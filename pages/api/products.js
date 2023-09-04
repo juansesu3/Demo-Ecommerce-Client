@@ -1,6 +1,6 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
-import { useState } from "react";
+
 
 const handle = async (req, res) => {
   await mongooseConnect();

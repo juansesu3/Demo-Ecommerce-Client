@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import SingleOrder from "@/components/SingleOrder";
 import { useRouter } from "next/router";
+import Register from "@/components/Register";
 
 const CityHolder = styled.div`
   display: flex;
@@ -48,10 +49,10 @@ const Form = styled.form`
 const AccountPage = () => {
   const { data: session } = useSession();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  console.log("Session come from useSession() Hokk >> ",{session});
 
-  const [userName, setUserName] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("jane-doe@negiupp.com");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const router = useRouter();
@@ -80,6 +81,7 @@ const AccountPage = () => {
       const result = await signIn("credentials", {
         redirect: false,
         email,
+        name,
         password,
       });
 
@@ -113,12 +115,13 @@ const AccountPage = () => {
     setWishListLoaded(false);
     setOrdersLoaded(false);
     axios.get("/api/address").then((response) => {
-      setName(response.data.name);
-      setEmail(response.data.userEmail);
-      setCity(response.data.city);
-      setPostalCode(response.data.postalCode);
-      setStreeAddres(response.data.streetAddress);
-      setCountry(response.data.country);
+      console.log(response);
+      setName(response.data?.name);
+      setEmail(response.data?.userEmail);
+      setCity(response.data?.city);
+      setPostalCode(response.data?.postalCode);
+      setStreeAddres(response.data?.streetAddress);
+      setCountry(response.data?.country);
       setAddressLoaded(true);
     });
 
@@ -208,6 +211,7 @@ const AccountPage = () => {
                     <p>
                       <i>If you want to try it!</i>
                     </p>
+
                     <p>
                       User Name: <strong>jane-doe</strong>
                     </p>
@@ -216,8 +220,8 @@ const AccountPage = () => {
                     </p>
                     <Input
                       type="text"
-                      value={userName}
-                      onChange={(ev) => setUserName(ev.target.value)}
+                      value={name}
+                      onChange={(ev) => setName(ev.target.value)}
                       placeholder="user-name here"
                     />
                     <Input

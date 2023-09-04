@@ -6,14 +6,14 @@ const Register = () => {
   const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
+  const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const router = useRouter();
-  console.log(image, email, password, userName);
+  console.log(image, email, password, name);
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    const data = { userName, email, password, image };
-    if (!userName || !email || !password || !image) {
+    const data = { name, email, password, image };
+    if (!name || !email || !password || !image) {
       setError(true);
       return;
     }
@@ -36,8 +36,8 @@ const Register = () => {
         />
         <input
           type="text"
-          value={userName}
-          onChange={(ev) => setUserName(ev.target.value)}
+          value={name}
+          onChange={(ev) => setName(ev.target.value)}
           placeholder="user-name"
         />
         <input

@@ -1,8 +1,8 @@
 import { mongooseConnect } from "@/lib/mongoose";
-import { User } from "@/models/user";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { User } from "@/models/User";
 
 export const authOptions = {
   providers: [
@@ -10,7 +10,9 @@ export const authOptions = {
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const { email, password } = credentials;
+        console.log("Credentials before destructuring", { credentials });
+        const { name, password, email } = credentials;
+
         try {
           await mongooseConnect();
           const user = await User.findOne({ email });
@@ -21,6 +23,7 @@ export const authOptions = {
           if (!passwordMatch) {
             return null;
           }
+          console.log("User authtenticated >> ",{user})
           return user;
         } catch (error) {
           console.log(error);
