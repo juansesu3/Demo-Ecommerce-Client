@@ -55,7 +55,7 @@ const Box = styled.div`
     justify-content: center;
     padding: 10px;
     background-color: gray;
-   border-radius: .5rem;
+    border-radius: 0.5rem;
     color: #cccccc;
   }
 `;
