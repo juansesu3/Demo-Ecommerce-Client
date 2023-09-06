@@ -1,10 +1,9 @@
-"use client"
+"use client";
 import { mongooseConnect } from "@/lib/mongoose";
 import { User } from "@/models/User";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-
 
 export const authOptions = {
   providers: [
@@ -25,7 +24,7 @@ export const authOptions = {
           if (!passwordMatch) {
             return null;
           }
-          console.log("User authtenticated >> ",{user})
+          console.log("User authtenticated >> ", { user });
           return user;
         } catch (error) {
           console.log(error);
