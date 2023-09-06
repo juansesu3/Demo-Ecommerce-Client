@@ -5,13 +5,13 @@ import { getServerSession } from "next-auth";
 
 const handle = async (req, res) => {
   await mongooseConnect();
-  const session = await getServerSession(req, res, authOptions);
-  console.log("Session Api wishList >> ", { session });
+  const { user } = await getServerSession(req, res, authOptions);
+  console.log("Heree getServerSession >>> ", user);
 
   if (req.method === "POST") {
     const { product } = req.body;
     const wisheDoc = await WishedProduct.findOne({
-      userEmail: session?.user?.email,
+      userEmail: user.email,
       product,
     });
     if (wisheDoc) {
@@ -19,7 +19,7 @@ const handle = async (req, res) => {
       res.json({ wisheDoc });
     } else {
       await WishedProduct.create({
-        userEmail: session?.user?.email,
+        userEmail: user.email,
         product,
       });
       res.json("create");
@@ -27,9 +27,7 @@ const handle = async (req, res) => {
   }
   if (req.method === "GET") {
     res.json(
-      await WishedProduct.find({ userEmail: session?.user?.email }).populate(
-        "product"
-      )
+      await WishedProduct.find({ userEmail: user?.email }).populate("product")
     );
   }
 };

@@ -39,6 +39,25 @@ const Box = styled.div`
   background-color: #fff;
   border-radius: 10px;
   padding: 30px;
+
+  .label {
+    font-weight: bold;
+  }
+  .intro-try-pay {
+  }
+  .info-values {
+    margin-left: 5px;
+  }
+  .warnig {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: gray;
+   border-radius: .5rem;
+    color: #cccccc;
+  }
 `;
 
 const ProductInfoCell = styled.td`
@@ -305,6 +324,27 @@ const CartPage = () => {
                 <Button black={1} block={1} onClick={goToPayment}>
                   Continue to payment
                 </Button>
+              </Box>
+              <br />
+              <Box>
+                <h3>Try payment feature</h3>
+                <p className="intro-try-pay">
+                  Fill out the card fields with the following information, it is
+                  a visa card for testing, buy what you want!
+                </p>
+                <div>
+                  <span className="label">Number: </span>
+                  <span className="info-values">4242424242424242</span>
+                </div>
+                <div>
+                  <span className="label">CVC: </span>
+                  <span className="info-values">555</span>
+                </div>
+                <div>
+                  <span className="label">Date: </span>
+                  <span className="info-values">55/55</span>
+                </div>
+                <span className="warnig">Remember this information</span>
               </Box>
             </RevealWrapper>
           )}
