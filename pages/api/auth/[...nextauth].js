@@ -1,4 +1,4 @@
-"use client";
+
 import { mongooseConnect } from "@/lib/mongoose";
 import { User } from "@/models/User"
 import NextAuth from "next-auth";
