@@ -1,11 +1,10 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import bcrypt from "bcryptjs";
-import { User } from "@/models/User";
-
+import { User } from "@/models/user";
 
 const handle = async (req, res) => {
   await mongooseConnect();
-  
+
   const { method } = req;
 
   if (method === "GET") {

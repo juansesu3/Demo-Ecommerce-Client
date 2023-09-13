@@ -1,6 +1,6 @@
 
 import { mongooseConnect } from "@/lib/mongoose";
-import { User } from "@/models/User"
+import { User } from "@/models/user"
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
